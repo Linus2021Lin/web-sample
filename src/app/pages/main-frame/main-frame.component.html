@@ -1,0 +1,12 @@
+<app-top-nav-bar></app-top-nav-bar>
+
+<mat-drawer-container class="drawer-container">
+  <mat-drawer #appDrawer disableClose="true" mode="side" opened>
+    <app-side-menu></app-side-menu>
+  </mat-drawer>
+  <mat-drawer-content class="drawer-content">
+    <div class="router-outlet-div">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-drawer-content>
+</mat-drawer-container>

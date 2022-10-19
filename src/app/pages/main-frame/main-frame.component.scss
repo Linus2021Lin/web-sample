@@ -1,0 +1,31 @@
+@import '../../../assets/scss/defined-constant';
+
+.drawer-container .mat-list-base {
+  padding-top: 0;
+}
+
+.drawer-container {
+  height: 100%;
+}
+
+.mat-drawer-container {
+  height: calc(100% - #{$acc_header_height});;
+}
+
+.mat-drawer {
+  width: $acc_layout_component_left_draw_width;
+}
+
+.mat-drawer {
+  border-right: none;
+}
+
+.router-outlet-div {
+  height: 100%;
+  background-color: inherit; //keep same value with ecCloud
+}
+
+//override default backgroud-color
+.router-outlet-div .mat-app-background{
+  background-color: inherit;
+}

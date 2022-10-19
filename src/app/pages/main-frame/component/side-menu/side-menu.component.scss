@@ -1,0 +1,64 @@
+@import '../../../../../assets//scss/defined-constant';
+
+:host {
+  display: flex;
+  flex-direction: column;
+  outline: none;
+  width: 100%;
+}
+
+.menu-item-a.mat-list-item {
+  .mat-list-item-content {
+    flex: 1 1 100%;
+  }
+}
+
+.mat-list-item {
+  &.active {
+    background: rgba(0, 0, 0, 0.04);
+  }
+
+  &.active:hover {
+    background: rgba(0, 0, 0, 0.14);
+  }
+
+  height: $acc_menu_list_item_height;
+
+  .menu-item-div {
+    display: flex;
+    align-items: center;
+
+    .icon {
+      font-size: $acc_menu_list_item_icon_width;
+      width: $acc_menu_list_item_icon_width;
+      height: $acc_menu_list_item_icon_width;
+      margin-right: $acc_menu_list_item_icon_margin_right;
+    }
+
+    .image {
+      height: 13px;
+      width: 13px;
+      margin: 0 11px 0 0;
+    }
+
+    .name {
+      margin: 0;
+      overflow: hidden;
+      font-size: $acc_menu_list_item_name_font-size;
+      font-family: 'Open Sans', sans-serif;
+      font-weight: 600;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+  }
+
+  .expanded-icon {
+    font-size: $acc_menu_list_item_expand_icon_width;
+    width: $acc_menu_list_item_expand_icon_width;
+    height: $acc_menu_list_item_expand_icon_width;
+  }
+
+  .sub-menu-div {
+    background: white;
+  }
+}

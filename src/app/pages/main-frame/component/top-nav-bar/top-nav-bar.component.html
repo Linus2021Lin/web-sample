@@ -1,0 +1,63 @@
+<mat-toolbar color="primary" class="top-nav-bar" *ngIf="isInit">
+  <span class="logo"></span>
+  <span>Sample Console</span>
+
+  <span class="horizon-span"></span>
+
+  <button #activityMenuButton class="event-menu-icon" mat-button
+          [matMenuTriggerFor]="eventMenu" (menuOpened)="onOpenEventMenu()">
+    <mat-icon matBadge="{{ unReadCounter }}" matBadgeColor="warn">notifications</mat-icon>
+  </button>
+
+  <mat-menu xPosition="before" #eventMenu="matMenu" [class]='"top-nav-bar-menu"'>
+    <div class="event-menu" (click)="$event.stopPropagation();">
+      <div class="menu-title">
+        {{'PAGE.MAIN_FRAME.TITLE.LAST_EVENT'|translate}}
+      </div>
+      <mat-spinner *ngIf="isEventLoading"></mat-spinner>
+      <div *ngIf="!isEventLoading" class="menu-content">
+        <div *ngIf="eventItems.length == 0" class="event-empty">
+          <mat-icon>circle_notifications</mat-icon>
+          {{'PAGE.MAIN_FRAME.TITLE.NO_EVENT'| translate}}
+        </div>
+        <div *ngIf="eventItems.length > 0">
+          <div class='event-item-div' *ngFor="let item of eventItems; let itemIndex=index">
+            <ng-container *ngIf="itemIndex < 5">
+              <div class="event-item-title">
+                <div class="title-div">{{ item.title }}</div>
+                <div>
+                  <small>{{"PAGE.MAIN_FRAME.TITLE.AT"|translate}} {{ item.timestamp }}</small>
+                </div>
+              </div>
+              <div class="confirm-div">
+                <button class="confirm-button" mat-stroked-button
+                        [disabled]="item.confirm" (click)="onConfirmEventItem(item, $event);">
+                  {{'COMON.TEXT.CONFIRM' | translate}}
+                </button>
+              </div>
+            </ng-container>
+          </div>
+        </div>
+      </div>
+      <div class="more-div">
+        <a class="more-link" [routerLink]="'/more_event'" (click)="activityMenuButton._getHostElement().click()">
+           {{'PAGE.MAIN_FRAME.ACTIVE.SEE_MORE'| translate}}
+        </a>
+      </div>
+    </div>
+  </mat-menu>
+
+
+  <button class="user-menu-icon" mat-button [matMenuTriggerFor]="userMenu">
+    <mat-icon class="icon">account_circle</mat-icon>
+    Hi, User
+    <mat-icon>arrow_drop_down</mat-icon>
+  </button>
+
+  <mat-menu #userMenu="matMenu" [class]='"top-nav-bar-menu"'>
+    <button mat-menu-item (click)="onClickLogout()">
+      <mat-icon>power_settings_new</mat-icon>
+      <span>Logout</span>
+    </button>
+  </mat-menu>
+</mat-toolbar>

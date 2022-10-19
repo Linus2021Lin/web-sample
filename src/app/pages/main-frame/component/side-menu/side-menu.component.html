@@ -1,0 +1,31 @@
+<mat-nav-list>
+  <ng-container *ngFor="let item of menuItems">
+    <ng-template [ngTemplateOutlet]="menuItemRef" [ngTemplateOutletContext]="{ item: item }"></ng-template>
+  </ng-container>
+</mat-nav-list>
+
+<ng-template #menuItemRef let-item="item">
+  <a *ngIf="item.isShow" mat-list-item color="primary" (click)="onClickMenuItem(item)"
+      [ngClass]="{
+                    'active': isItemActive(item.routingName),
+                    'expanded': isExpanded
+                  }"
+      class="menu-item-a">
+    <div class="menu-item-div" [ngStyle]="{'padding-left': (item.menuLevel * 18) + 'px'}">
+       <mat-icon *ngIf="item.iconName" class="icon">{{item.iconName}}</mat-icon>
+       <img *ngIf="item.iconImagePath" class="image" [src]="item.iconImagePath"/>
+       <div class="name">{{item.itemName}}</div>
+    </div>
+    <span fxFlex *ngIf="item.subMenu && item.subMenu.length">
+      <span fxFlex></span>
+      <mat-icon class="expanded-icon" [@indicatorRotate]="isExpanded ? 'expanded': 'collapsed'">
+        expand_more
+      </mat-icon>
+    </span>
+  </a>
+  <div class="sub-menu-div" *ngIf="item.isShow && isExpanded">
+    <ng-container *ngFor="let subItem of item.subMenu">
+      <ng-template [ngTemplateOutlet]="menuItemRef" [ngTemplateOutletContext]="{ item: subItem }"></ng-template>
+    </ng-container>
+  </div>
+</ng-template>

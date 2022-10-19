@@ -1,0 +1,73 @@
+<div class="login-content">
+  <div class="logo-div">
+    <div class="logo-img"></div>
+    <svg class="logo-svg" version="1.1" xmlns="http://www.w3.org/2000/svg">
+      <symbol id="svg-text">
+        <text y="86px">Sample Console</text>
+      </symbol>
+      <g>
+        <use xlink:href="#svg-text" class="svg-text"></use>
+      </g>
+    </svg>
+  </div>
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <mat-card>
+      <mat-card-content>
+        <mat-form-field class="full-width-input">
+          <input matInput placeholder="{{'PAGE.LOGIN.COLUMN.USER'|translate}}" formControlName="userName" required>
+          <mat-error>
+            {{'PAGE.LOGIN.MESSAGE.ERROR.USERNAME_EMPTY'|translate}}
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="full-width-input">
+          <input matInput type="password" placeholder="{{'PAGE.LOGIN.COLUMN.PASSWORD'|translate}}"
+                  formControlName="password" required>
+          <mat-error>
+            {{'PAGE.LOGIN.MESSAGE.ERROR.PASSWORD_EMPTY'|translate}}
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="full-width-input">
+          <mat-label>{{'PAGE.LOGIN.COLUMN.LOGIN_SERVER'|translate}}</mat-label>
+          <mat-select matNativeControl formControlName="loginServer" disableOptionCentering>
+            <mat-option *ngFor="let option of loginServerOptions" [value]="option['value']">
+              {{option['label']}}
+            </mat-option>
+          </mat-select>
+          <mat-error>{{'REGEX.MESSAGE.ERROR.SELECT_EMPTY'|translate}}</mat-error>
+        </mat-form-field>
+
+        <div class="spinner-div">
+          <mat-spinner *ngIf="isLogin" [diameter]="20"></mat-spinner>
+        </div>
+        <mat-error *ngIf="isLoginError">
+          {{'PAGE.LOGIN.MESSAGE.ERROR.ERROR_AUTH'|translate}}
+        </mat-error>
+        <mat-error *ngIf="isUnknownError">
+          {{'PAGE.LOGIN.MESSAGE.ERROR.UNKNOWN_ERROR'|translate}}
+        </mat-error>
+        <div class="success-div" *ngIf="isLoginSuccess">
+          {{'PAGE.MESSAGE.SUCCESS.LOGIN_SUCCESS'| translate}}
+        </div>
+      </mat-card-content>
+
+      <mat-card-footer>
+        <div class="footer-div">
+          <mat-icon class="language">language</mat-icon>
+          <div class="i18n-option" [matMenuTriggerFor]="menu" mat-ripple>
+            {{ siteLanguage }}
+            <mat-icon>arrow_drop_down</mat-icon>
+          </div>
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item (click)="onClickLanguageOption(option)" *ngFor="let option of languageOptions">
+              <span> {{ option.label }}</span>
+            </button>
+          </mat-menu>
+        </div>
+      </mat-card-footer>
+    </mat-card>
+    <button class="login-btn" [disabled]="isLogin || isLoginSuccess"
+            translate mat-raised-button color="primary" type="submit">
+      {{'PAGE.LOGIN.LOGIN_TITLE'|translate}}
+    </button>
+  </form>
+</div>
