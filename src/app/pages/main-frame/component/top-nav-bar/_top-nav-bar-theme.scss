@@ -1,0 +1,16 @@
+@mixin change-top-nav-bar-theme($theme, $background) {
+  .top-nav-bar-menu .mat-menu-content:not(:empty) {
+    padding-top: $acc_header_user_button_select_content_padding;
+    padding-bottom: $acc_header_user_button_select_content_padding;
+    min-width: $acc_header_user_button_select_min_width;
+  }
+  .top-nav-bar-menu .mat-icon {
+    width: $acc_header_user_button_select_icon_size;
+    height: $acc_header_user_button_select_icon_size;
+    font-size: $acc_header_user_button_select_icon_size;
+  }
+
+  .top-nav-bar.mat-toolbar.mat-primary {
+    background: map_get($background, top-nav);
+  }
+}

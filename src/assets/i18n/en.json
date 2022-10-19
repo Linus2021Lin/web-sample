@@ -1,0 +1,19 @@
+{
+  "COMON.TEXT.CONFIRM": "Confirm",
+  "REGEX.MESSAGE.ERROR.SELECT_EMPTY": "Please select",
+  "REGEX.MESSAGE.ERROR.NUMBER_EMPTY": "Please Input Number",
+  "PAGE.LOGIN.LOGIN_TITLE": "Login",
+  "PAGE.LOGIN.COLUMN.USER": "User",
+  "PAGE.LOGIN.COLUMN.PASSWORD": "Password",
+  "PAGE.LOGIN.COLUMN.LOGIN_SERVER": "Login Server",
+  "PAGE.LOGIN.MESSAGE.ERROR.ERROR_AUTH": "Your username or password is not correct",
+  "PAGE.LOGIN.MESSAGE.ERROR.UNKNOWN_ERROR": "Service may not run normally.",
+  "PAGE.LOGIN.MESSAGE.SUCCESS.LOGIN_SUCCESS": "Login Success",
+  "PAGE.LOGIN.MESSAGE.ERROR.USERNAME_EMPTY": "Please inform your user name",
+  "PAGE.LOGIN.MESSAGE.ERROR.PASSWORD_EMPTY": "Please inform your password",
+  "PAGE.MAIN_FRAME.TITLE.LAST_EVENT": "Last Event",
+  "PAGE.MAIN_FRAME.TITLE.NO_EVENT": "No Unconfirmed Event",
+  "PAGE.MAIN_FRAME.TITLE.AT": "at",
+  "PAGE.MAIN_FRAME.ACTIVE.SEE_MORE": "See More",
+  "PAGE.MAIN_FRAME.MENU.HOME": "Home"
+}
