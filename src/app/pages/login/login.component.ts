@@ -48,7 +48,7 @@ export class LoginComponent implements OnInit {
 
   private loginWithAuth01() {
     const loginData = {
-      userName: this.loginForm.get('loginServer').value,
+      userName: this.loginForm.get('userName').value,
       password: this.loginForm.get('password').value
     };
     console.log('login with auth01')
@@ -60,7 +60,7 @@ export class LoginComponent implements OnInit {
 
   private loginWithAuth02() {
     const loginData = {
-      userName: this.loginForm.get('loginServer').value,
+      userName: this.loginForm.get('userName').value,
       password: this.loginForm.get('password').value
     };
     console.log('login with auth02')
