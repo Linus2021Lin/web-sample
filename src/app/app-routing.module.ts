@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from './pages/login/login.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { MainFrameComponent } from './pages/main-frame/main-frame.component';
+import { FormDemoComponent } from './pages/form-demo/form-demo.component';
 
 
 const routes: Routes = [
@@ -15,6 +16,7 @@ const routes: Routes = [
     children: [
       { path: 'home', redirectTo: 'dashboard' },
       { path: 'dashboard', component: DashboardComponent },
+      { path: 'formDemo', component: FormDemoComponent },
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
       { path: '**', redirectTo: 'home' }
     ]
