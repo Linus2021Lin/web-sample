@@ -1,0 +1,64 @@
+<div class="mat-app-background mars-component">
+  <div class="main-header tab-bar">
+    <div class="header-primary">
+      <div class="header-title">{{'PAGE.MAIN_FRAME.MENU.MODAL_DEMO'|translate}}</div>
+      <div class="flex-spacer"></div>
+      <div header-action-show >
+      </div>
+    </div>
+  </div>
+  <div class="main-content tab-content">
+    <mat-tab-group #tabGroup disableRipple="true" animationDuration="0ms" class="page-header-tabs">
+      <mat-tab label="{{'COMON.TEXT.DESCRIPTION'|translate}}">
+        <ng-template matTabContent>
+          <div class="tab-content-div">
+            <ul>
+              <li>
+                Use angular material dialog component to build the modal.
+              </li>
+              <li>
+                Use angular material CDK to customize modal style.
+              </li>
+              <li>
+                Use abstract class to force form modal having submit function.
+              </li>
+              <li>
+                More detail please access the official web page.
+              </li>
+            </ul>
+            <a href="https://material.angular.tw/components/dialog/overview" target="_blank">
+              Access Angular Material Dialog Doc.
+            </a><br/>
+            <a href="https://material.angular.tw/cdk/overlay/overview" target="_blank">
+              Access Angular Material CDK Overlay Doc.
+            </a>
+          </div>
+        </ng-template>
+      </mat-tab>
+
+      <mat-tab label="DEMO">
+        <ng-template matTabContent>
+          <div class="tab-content-div">
+            <button (click)="onClickDemoMessageModal()">Show Message Modal</button>
+            <button (click)="onClickDemoConfirmModal()">Show Confirm Modal</button>
+            <button (click)="onClickDemoFormModal()">Show Form Modal</button>
+          </div>
+        </ng-template>
+      </mat-tab>
+
+    </mat-tab-group>
+  </div>
+</div>
+
+<ng-template #hintTemplate>
+  <div>
+    <ul>
+      <li>
+        You Can Put
+      </li>
+      <li>
+        Template Here
+      </li>
+    </ul>
+  </div>
+</ng-template>

@@ -1,0 +1,26 @@
+<div mat-dialog-title>
+  {{ modelConfig.title }}
+  <mat-icon class="close-icon" mat-dialog-close></mat-icon>
+</div>
+<div mat-dialog-content>
+  <ng-container *ngIf="modelConfig.content">
+    {{ modelConfig.content }}
+  </ng-container>
+  <ng-container *ngIf="modelConfig.template">
+    <ng-template [ngTemplateOutlet]="modelConfig.template"
+      [ngTemplateOutletContext]="{ $implicit: modelConfig.data }">
+    </ng-template>
+  </ng-container>
+</div>
+<div mat-dialog-actions *ngIf="modelConfig.isShowCancelBtn || modelConfig.isShowConfirmBtn">
+  <ng-container *ngIf="modelConfig.isShowConfirmBtn">
+    <button mat-raised-button [mat-dialog-close]="true" type="submit">
+      {{'COMON.TEXT.CONFIRM.ALL_UPCASE'|translate}}
+    </button>
+  </ng-container>
+  <ng-container *ngIf="modelConfig.isShowCancelBtn">
+    <button mat-stroked-button mat-dialog-close>
+      {{'COMON.TEXT.CANCEL.ALL_UPCASE'|translate}}
+    </button>
+  </ng-container>
+</div>
