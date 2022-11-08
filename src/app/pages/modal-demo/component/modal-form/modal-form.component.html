@@ -1,0 +1,21 @@
+<form [formGroup]="modalForm">
+  <mat-expansion-panel expanded="true" togglePosition="before">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Input Form
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <app-label-input [isRequired]="true" label="Field01">
+      <mat-form-field appearance="outline">
+        <input matInput formControlName="field01"/>
+        <mat-error>{{'REGEX.MESSAGE.ERROR.NUMBER'|translate}}</mat-error>
+      </mat-form-field>
+    </app-label-input>
+
+    <app-label-input [isRequired]="false" label="Field02">
+      <mat-form-field appearance="outline">
+        <input matInput formControlName="field02"/>
+      </mat-form-field>
+    </app-label-input>
+  </mat-expansion-panel>
+</form>

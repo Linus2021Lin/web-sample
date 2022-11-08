@@ -5,6 +5,7 @@ import { MainFrameModule } from './main-frame/main-frame.module';
 import { LoginModule } from './login/login.module';
 import { DashboardModule } from './dashboard/dashboard.module';
 import { FormDemoModule } from './form-demo/form-demo.module';
+import { ModalDemoModule } from './modal-demo/modal-demo.module';
 
 @NgModule({
   declarations: [],
@@ -15,7 +16,8 @@ import { FormDemoModule } from './form-demo/form-demo.module';
     MainFrameModule,
     LoginModule,
     DashboardModule,
-    FormDemoModule
+    FormDemoModule,
+    ModalDemoModule
   ]
 })
 export class PagesModule { }

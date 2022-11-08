@@ -28,6 +28,13 @@ export class ConstantService {
         isShow: true
       },
       {
+        itemName: this.translateService.instant('PAGE.MAIN_FRAME.MENU.MODAL_DEMO'),
+        menuLevel: 0,
+        iconImagePath: '../../../assets/icons/menu_list_icons/functions.svg',
+        routingName: 'modalDemo',
+        isShow: true
+      },
+      {
         itemName: 'Sub Menu Demo',
         menuLevel: 0,
         iconImagePath: '../../../assets/icons/menu_list_icons/functions.svg',

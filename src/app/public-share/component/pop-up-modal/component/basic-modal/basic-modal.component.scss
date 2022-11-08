@@ -1,0 +1,60 @@
+.cdk-overlay-pane.basic-modal {
+  top: 10%;
+  position: absolute !important;
+}
+
+.cdk-overlay-pane.small {
+  width: 512px;
+}
+
+.cdk-overlay-pane.medium {
+  width: 720px;
+}
+
+.cdk-overlay-pane.large {
+  width: 904px;
+}
+
+.cdk-overlay-pane > .mat-dialog-container {
+  padding: 0;
+  overflow: inherit;
+  box-shadow: 2px 6px 20px 0 rgba(77,77,77,0.2), 1px 3px 4px 0 rgba(0,0,0,0.1);
+}
+
+.mat-dialog-container .mat-dialog-title {
+  position: relative;
+  margin: 0;
+  padding: 24px 56px 16px 24px;
+}
+
+.mat-dialog-title .close-icon {
+  position: absolute;
+  right: 16px;
+  top: 16px;
+  cursor: pointer;
+  background-image: url('../../../../../../assets/icons/close.svg');
+}
+
+.mat-dialog-title .close-icon:hover {
+  background-image: url('../../../../../../assets/icons/close_hover.svg');
+}
+
+.mat-dialog-container .mat-dialog-content {
+  margin: 0;
+  padding: 0 16px 32px 24px;
+  max-height: 50vh;
+}
+
+.mat-dialog-container .mat-dialog-actions {
+  border-top: 1px solid #dfdfdf;
+  padding: 16px;
+  position: relative;
+  float: right;
+  margin-bottom: 0;
+  width: 100%;
+  flex-direction: row-reverse;
+}
+
+.mat-dialog-container .mat-dialog-actions > button {
+  margin-left: 8px;
+}
