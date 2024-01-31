@@ -3,6 +3,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { I18nService } from '../../public-share/service/i18n.service';
+import { TOEKN_SEESION_NAME } from '../../public-share/service/global-constant.service';
 import { ConstantService } from './service/constant.service';
 
 @Component({
@@ -55,6 +56,7 @@ export class LoginComponent implements OnInit {
     console.log(loginData)
     console.log('login with auth01')
     // Call ajax that auth with auth01 server
+    localStorage.setItem(TOEKN_SEESION_NAME, 'test token');
     this.router.navigate([this.returnUrl]);
   }
 
@@ -67,6 +69,7 @@ export class LoginComponent implements OnInit {
     console.log(loginData)
     console.log('login with auth02')
     // Call ajax that auth with auth02 server
+    localStorage.setItem(TOEKN_SEESION_NAME, 'test token');
     this.router.navigate([this.returnUrl]);
   }
 
