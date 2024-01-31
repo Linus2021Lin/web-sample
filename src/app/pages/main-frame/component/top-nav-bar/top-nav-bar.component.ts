@@ -4,6 +4,7 @@ import {
   cloneDeep as _cloneDeep
 } from 'lodash';
 import { ToastrOperatorService } from '../../../../public-share/service/toastr-operator.service';
+import { TOEKN_SEESION_NAME } from '../../../../public-share/service/global-constant.service';
 import { PageHandlerService } from '../../service/page-handler.service';
 
 @Component({
@@ -67,6 +68,7 @@ export class TopNavBarComponent implements OnInit {
 
   onClickLogout() {
     // Call ajax that logout with auth server
+    localStorage.setItem(TOEKN_SEESION_NAME, '');
     this.router.navigate(['/login']);
   }
 
