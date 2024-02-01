@@ -1,0 +1,29 @@
+<div class="modal-container">
+  <div class="modal-header">
+    <div class="title text">
+      {{title}}
+    </div>
+    <div class="sub-title text">
+      {{subTitle}}
+    </div>
+  </div>
+  <div class="modal-content">
+    <ng-container *ngIf="isLoading">
+      <mat-spinner  color="accent" [diameter]="20"></mat-spinner>
+    </ng-container>
+    <ng-template #contentTemplate *ngIf="!isLoading"
+                (attached)="onContentTemplateAttached($event)"
+                [cdkPortalOutlet]="modalOutlet"></ng-template>
+  </div>
+  <div class="modal-actions">
+    <button class="cancel-button" mat-stroked-button (click)="onClickClose()">
+      {{cancelBtnLabel}}
+    </button>
+    <button *ngIf="modalType === 'submit'" class="submit-button" mat-raised-button (click)="onClickSubmit()">
+      {{submitBtnLabel}}
+    </button>
+    <button *ngIf="modalType === 'confirm'" class="submit-button" mat-raised-button (click)="onClickConfirm()">
+      {{confirmBtnLabel}}
+    </button>
+  </div>
+</div>

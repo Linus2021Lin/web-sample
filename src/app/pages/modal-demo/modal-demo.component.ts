@@ -1,8 +1,9 @@
 import { Component, OnInit, ViewChild, TemplateRef } from '@angular/core';
-import { PopUpModalService } from '../../public-share/service/pop-up-modal.service';
+import { PopUpModalOperatorService } from '../../public-share/service/pop-up-modal-operator.service';
 import { ToastrOperatorService } from '../../public-share/service/toastr-operator.service';
-import { ModalFormComponent } from './component/modal-form/modal-form.component';
-import { BasicModalObj } from '../../public-share/interface/modal';
+import { PopUpModalConfig } from '../../public-share/interface/pop-up-modal';
+import { DemoFormComponent } from '../../form-components/demo-form/demo-form.component';
+import { DemoComponentComponent } from './component/demo-component/demo-component.component';
 
 @Component({
   selector: 'app-modal-demo',
@@ -10,84 +11,111 @@ import { BasicModalObj } from '../../public-share/interface/modal';
   styleUrls: ['./modal-demo.component.scss']
 })
 export class ModalDemoComponent implements OnInit {
-  @ViewChild('hintTemplate', { static: true }) hintTemplateRef: TemplateRef<any>;
+  @ViewChild('demoTemplate', { static: true }) demoTemplateRef: TemplateRef<any>;
 
   constructor(
-    private popUpModalService: PopUpModalService,
+    private popUpModalOperatorService: PopUpModalOperatorService,
     private toastrOperatorService: ToastrOperatorService
   ) { }
 
   ngOnInit(): void {
   }
 
-  onClickDemoMessageModal() {
-    // You can choose string content or template content
-    const model: BasicModalObj = {
-      title: 'Message Hint',
-      content: 'You can put message here.',
-      isShowCancelBtn: true,
-      isShowConfirmBtn: false
-    };
+  onClickDemoTextModal() {
+    const modalTitle = 'Text Modal';
+    const modalText = 'You can put text here.';
+    const modalConfig: PopUpModalConfig = {
+                                              title: modalTitle,
+                                              modalType: 'confirm'
+                                            };
+    const modalRef = this.popUpModalOperatorService.openPopupModal(modalText, modalConfig);
 
-    this.popUpModalService.openBasicModal(model)
-      .afterClosed().subscribe(result => {
+    modalRef.afterClose$.subscribe(
+      res => {
         // Do something after the modal close.
-      });
-  }
-
-  onClickDemoConfirmModal() {
-    // You can choose string content or template content
-    const model: BasicModalObj = {
-      title: 'Data Confirm',
-      template: this.hintTemplateRef,
-      isShowCancelBtn: true,
-      isShowConfirmBtn: true
-    };
-
-    this.popUpModalService.openBasicModal(model)
-      .afterClosed().subscribe(result => {
-        // Do something after the modal close.
-        if(result) {
-          this.toastrOperatorService.showSuccessToastr(
-            'Data Confirm Complete!',
-            'Data Confirm'
-          );
-        } else {
-          this.toastrOperatorService.showWarningToastr(
-            'Data NOT Confirm!',
-            'Data Confirm'
-          );
-        }
-      });
-  }
-
-  onClickDemoFormModal() {
-    const modalService = this.popUpModalService.openFormModal(ModalFormComponent,
-                          {
-                            title: 'Form Modal Title',
-                            data: {
-                              defaultData: 'Default Value From Page.'
-                            }
-                          });
-    const modalSubscription = modalService.subscribe(response => {
-      // If the data of response is null
-      // Means the modal is NOT submit, it just be closed.
-      if(response.data) {
-        this.toastrOperatorService.showSuccessToastr(
-          'Submit Form Success!',
-          'Success'
-        );
+        const toastrMessage = 'Close by: ' + res.triggerCloseType;
+        this.toastrOperatorService.showSuccessToastr(toastrMessage, modalTitle);
+      },
+      error => {
+        // Do something when modal error.
+        const errorMessage = error.error_msg || error;
+        this.toastrOperatorService.showErrorToastr(errorMessage, modalTitle);
       }
+    )
+  }
 
-      modalSubscription.unsubscribe();
-    }, (err) => {
-      this.toastrOperatorService.showErrorToastr(
-        'Submit Form Error!',
-        'Error'
-      );
+  onClickDemoTemplateModal() {
+    const modalTitle = 'Template Modal';
+    const modalConfig: PopUpModalConfig = {
+                                              title: modalTitle,
+                                              modalType: 'confirm'
+                                            };
+    const modalRef = this.popUpModalOperatorService.openPopupModal(this.demoTemplateRef, modalConfig);
 
-      modalSubscription.unsubscribe();
-    });
+    modalRef.afterClose$.subscribe(
+      res => {
+        // Do something after the modal close.
+        const toastrMessage = 'Close by: ' + res.triggerCloseType;
+        this.toastrOperatorService.showSuccessToastr(toastrMessage, modalTitle);
+      },
+      error => {
+        // Do something when modal error.
+        const errorMessage = error.error_msg || error;
+        this.toastrOperatorService.showErrorToastr(errorMessage, modalTitle);
+      }
+    )
+  }
+
+  onClickDemoComponentModal() {
+    const modalTitle = 'Component Modal';
+    const modalConfig: PopUpModalConfig = {
+                                              title: modalTitle,
+                                              modalType: 'confirm'
+                                            };
+    const modalRef = this.popUpModalOperatorService.openPopupModal(DemoComponentComponent, modalConfig);
+
+    modalRef.afterClose$.subscribe(
+      res => {
+        // Do something after the modal close.
+        const toastrMessage = 'Close by: ' + res.triggerCloseType;
+        this.toastrOperatorService.showSuccessToastr(toastrMessage, modalTitle);
+      },
+      error => {
+        // Do something when modal error.
+        const errorMessage = error.error_msg || error;
+        this.toastrOperatorService.showErrorToastr(errorMessage, modalTitle);
+      }
+    )
+  }
+
+  onClickDemoFormModal(isSetOldData) {
+    const modalTitle = 'Component Modal';
+    const oldData = {
+      field01: 123,
+      field02: 'abc'
+    }
+    const modalConfig: PopUpModalConfig = {
+                                              title: modalTitle,
+                                              modalType: 'submit',
+                                              data: {
+                                                      originalData: oldData,
+                                                      isEdit: isSetOldData
+                                                    }
+                                            };
+    const modalRef = this.popUpModalOperatorService.openPopupModal(DemoFormComponent, modalConfig);
+
+    modalRef.afterClose$.subscribe(
+      res => {
+        // Do something after the modal close.
+        const toastrMessage = 'Close by: ' + res.triggerCloseType;
+        this.toastrOperatorService.showSuccessToastr(toastrMessage, modalTitle);
+      },
+      error => {
+        // Do something when modal error.
+        const errorMessage = error.error_msg || error;
+        this.toastrOperatorService.showErrorToastr(errorMessage, modalTitle);
+      }
+    )
   }
 
 }
