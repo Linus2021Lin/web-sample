@@ -1,16 +1,25 @@
 /* You can add global styles to this file, and also import other style files */
 @import './assets/scss/defined-break-points';
-@import './assets/scss/themes';
 @import './assets/scss/font';
+@import './assets/scss/defined-constant';
+@import '~@angular/material/theming';
 @import '~ngx-toastr/toastr';
-// @import '~tippy.js/dist/tippy.css'; // optional for styling
-// @import '~jsoneditor/dist/jsoneditor.css';
+
+// Default colors
+$app-primary: mat-palette($mat-indigo);
+$app-accent: mat-palette($mat-blue, A200, A100, A400);
+$app-warn: mat-palette($mat-red);
+$app-theme: mat-light-theme($app-primary, $app-accent, $app-warn);
+@include mat-core();
+@include angular-material-theme($app-theme);
 
 * {
   box-sizing: border-box;
 }
 
+// Default style of icons
 .material-icons {
+  // Need to assign icon font family
   font-family: 'Material Icons';
   font-weight: normal;
   font-style: normal;
@@ -25,82 +34,49 @@
   -webkit-font-smoothing: antialiased;
 }
 
-.material-icons.md-18 { font-size: 18px; }
-.material-icons.md-24 { font-size: 24px; }
-.material-icons.md-36 { font-size: 36px; }
-.material-icons.md-48 { font-size: 48px; }
-
 body {
   margin: 0;
   height: 100vh;
-  font-family: 'Open Sans', sans-serif !important;
-  font-size: 13px;
-  color: #292a1d;
+  overflow: hidden;
+
+  .global-font {
+    font-family: 'Open Sans', sans-serif !important;
+    font-size: 13px;
+    color: #292a1d;
+  }
 }
 
 .app-root {
   height: 100%;
 }
 
-.main-header {
-  padding: 24px;
-  top: 54px;
-  width: 100%;
-  background: #fff;
-  box-shadow: 0 1px 3px 0 rgba(77,77,77,0.2), 0 1px 1px 0 rgba(0,0,0,0.05);
+// Remove the input shadow that add by browser when auto complete
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  background-clip: text;
+  -webkit-background-clip: text;
+  box-shadow: none;
 }
 
-.main-header.tab-bar {
-  height: 96px;
-}
+// Page conmponent area style
+.sample-page-component {
+  .main-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 24px;
+    width: 100%;
+    background: #fff;
 
-.main-header.secondary.tab-bar {
-  height: 128px;
-}
+    .header-title {
+      font-size: 20px;
+      color: #3c3c3c;
+    }
+  }
 
-.header-primary {
-  display: flex;
-  align-items: center;
-  padding-bottom: 8px;
-  height: 32px;
-}
-
-.header-primary > .flex-spacer {
-  flex-grow: 1;
-}
-
-.header-primary > .header-title {
-  font-size: 20px;
-  padding-right: 8px;
-  color: #3c3c3c;
-}
-
-.header-primary > .header-sub-title {
-  font-size: 13px;
-  line-height: 16px;
-  padding: 8px 0;
-  color: #979797;
-}
-
-.header-secondary {
-  height: 32px;
-  padding: 6px 0;
-  overflow-y: auto;
-}
-
-.main-content {
-  margin: 16px 24px 0;
-}
-
-.main-content.tab-content {
-  margin: 0;
-}
-
-p,h1,h2,h3,h4,h5,h6 {
-  margin-inline: unset;
-  margin-block: unset;
-}
-
-input, button {
-  outline: 0;
+  .tab-page-header {
+    padding-bottom: 0;
+  }
 }

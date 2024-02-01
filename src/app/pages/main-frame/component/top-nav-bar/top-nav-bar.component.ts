@@ -5,7 +5,7 @@ import {
 } from 'lodash';
 import { ToastrOperatorService } from '../../../../public-share/service/toastr-operator.service';
 import { TOEKN_SEESION_NAME } from '../../../../public-share/service/global-constant.service';
-import { PageHandlerService } from '../../service/page-handler.service';
+import { MockDataService } from '../../../../public-share/service/mock-data.service';
 
 @Component({
   selector: 'app-top-nav-bar',
@@ -22,7 +22,7 @@ export class TopNavBarComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private pageHandlerService: PageHandlerService,
+    private mockDataService: MockDataService,
     private toastrOperatorService: ToastrOperatorService
   ) { }
 
@@ -34,7 +34,7 @@ export class TopNavBarComponent implements OnInit {
   private getEventData() {
     this.isEventLoading = true;
 
-    this.pageHandlerService.getEventData().subscribe(response => {
+    this.mockDataService.getMockEvents().subscribe(response => {
         this.eventItems = _cloneDeep(response['events']);
         this.unReadCounter = response['unReadCounter'];
         this.isEventLoading = false;

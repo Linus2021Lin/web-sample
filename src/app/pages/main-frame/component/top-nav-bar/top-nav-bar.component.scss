@@ -1,90 +1,39 @@
-@import '../../../../../assets/scss/defined-constant';
-
 .top-nav-bar {
-  .horizon-span {
-    flex: 1 1 auto;
+  display: flex;
+  justify-content: space-between;
+  background: #393939;
+  color: #fff;
+
+  .logo-div {
+    display: flex;
+    align-items: center;
+
+    .logo {
+      display: block;
+      background-image: url('../../../../../assets/images/logo_4_login.png');
+      background-size: 30px 25px;
+      width: 30px;
+      height: 25px;
+    }
+  }
+
+  .tools-div {
+    display: flex;
+
+    .user-menu-icon {
+      .icon {
+        margin-right: 8px
+      }
+    }
   }
 }
 
-.mat-button {
-  height: $acc_header_button_height;
-  padding: $acc_header_button_padding;
-}
-
-.mat-button.event-menu-icon {
-  min-width: $acc_header_button_width;
-  width: $acc_header_button_width;
-  padding: 0;
-}
-
-.mat-toolbar {
-  height: $acc_header_height;
-}
-
-.mat-button.user-menu-icon {
-  padding: $acc_header_user_button_padding;
-  min-width: $acc_header_user_button_min_width;
-
-  .icon {
-    margin-right: 8px
-  }
-}
-
-.activity_info:before {
-  content: "I";
-  background-color: #5a65ad;
-}
-
-.activity_warn:before {
-  content: "W";
-  background-color: orange;
-}
-
-.activity_error:before {
-  content: "E";
-  background-color: red;
-}
-
-.activity_base:before {
-  border-radius: 15px;
-  color: #fbfbfb;
-  font-size: 11px;
-  line-height: 30px;
-  display: table-cell;
-  text-align: center;
-  height: 30px;
-  width: 30px;
-}
-
-.activity_base {
-  padding-top: 12px;
-  padding-left: 0;
-  padding-right: 15px;
-  min-width: 45px;
-}
-
-.top-nav-bar .cdk-overlay-pane .mat-menu-panel {
-  border-radius: 3px;
-  min-height: 40px; //ecclound table row action min-height value
-  min-width: 350px; //ecclound table row action min-width value
-  max-width: 350px;
-}
-
-.logo {
-  background-image: url('../../../../../assets/images/logo_4_login.png');
-  background-size: 30px 25px;
-  width: 30px;
-  height: 25px;
-}
-
-.event-menu {
+::ng-deep .mat-menu-panel.event-menu {
   width: 350px;
 
   .menu-title {
     font-size: 18px;
     line-height: 48px;
-    height: 48px;
-    border-bottom: 1px solid #f7f7f7;
     padding-left: 16px;
   }
 
@@ -98,58 +47,52 @@
       display: flex;
       justify-content: center;
     }
+
+    .event-item-div {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      padding-left: 16px;
+
+      .item-title {
+        line-height: 20px;
+        color: #4d4d4d;
+        font-size: 14px;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+
+        .title {
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+      }
+    }
   }
 
   .more-div {
-    line-height: 40px;
-    height: 40px;
-    border-top: 1px solid #f7f7f7;
     text-align: right;
     padding-right: 16px;
 
     .more-link {
-      text-decoration: none;
       font-weight: 600;
       font-size: 14px;
     }
   }
 }
 
-.event-item-div {
-  display: flex;
-  height: 50px;
-  padding-left: 16px;
-  justify-content: space-around;
+::ng-deep .mat-menu-panel.user-menu {
+  min-height: fit-content;
 
-  .event-item-title {
-    padding-right: 5px;
-    padding-top: 4px;
-    padding-bottom: 4px;
-    line-height: 20px;
-    text-align: left;
-    color: #4d4d4d;
-    font-size: 14px;
-    flex-grow: 1;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    overflow: hidden;
-
-    .title-div {
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
+  .mat-menu-content {
+    min-width: fit-content;
   }
 
-  .confirm-div {
-    display: flex;
-    align-items: center;
-    flex-grow: 0;
-    padding-right: 16px;
-
-    .confirm-button {
-      min-width: 50px;
-      height: 24px;
-      padding: 0;
-    }
+  button {
+    padding: 12px 16px;
+    height: 40px;
+    font-size: 13px;
+    line-height: 16px;
+    color: #3c3c3c;
   }
 }

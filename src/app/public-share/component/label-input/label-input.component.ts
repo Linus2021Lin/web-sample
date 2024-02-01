@@ -8,8 +8,8 @@ import { Component, OnInit, Input, ViewEncapsulation } from '@angular/core';
 })
 export class LabelInputComponent implements OnInit {
   @Input() label: string;
+  @Input() hint: string = '';
   @Input() labelTooltip?: string;
-  @Input() isNotFormInput: boolean = false;
   @Input() isRequired: boolean = false;
 
   constructor() { }
