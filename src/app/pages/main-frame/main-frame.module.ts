@@ -8,7 +8,6 @@ import { MainFrameOperatorService } from '../../public-share/service/main-frame-
 import { MainFrameComponent } from './main-frame.component';
 import { SideMenuComponent } from './component/side-menu/side-menu.component';
 import { TopNavBarComponent } from './component/top-nav-bar/top-nav-bar.component';
-import { PageHandlerService } from './service/page-handler.service';
 import { ConstantService } from './service/constant.service';
 
 
@@ -28,7 +27,6 @@ import { ConstantService } from './service/constant.service';
   ],
   providers: [
     MainFrameOperatorService,
-    PageHandlerService,
     ConstantService
   ]
 })
