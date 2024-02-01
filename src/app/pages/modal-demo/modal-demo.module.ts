@@ -4,13 +4,18 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
 import { NgMaterialModule } from '../../public-share/ng-material/ng-material.module';
 import { ComponentModule } from '../../public-share/component/component.module';
+import { DemoFormComponent } from '../../form-components/demo-form/demo-form.component';
 import { ModalDemoComponent } from './modal-demo.component';
-import { ModalFormComponent } from './component/modal-form/modal-form.component';
+import { DemoComponentComponent } from './component/demo-component/demo-component.component';
 
 
 
 @NgModule({
-  declarations: [ModalDemoComponent, ModalFormComponent],
+  declarations: [
+    ModalDemoComponent,
+    DemoFormComponent,
+    DemoComponentComponent
+  ],
   imports: [
     CommonModule,
     NgMaterialModule,

@@ -1,0 +1,14 @@
+<form [formGroup]="demoModalForm">
+  <app-label-input [isRequired]="true" label="Field01">
+    <mat-form-field appearance="outline">
+      <input matInput formControlName="field01"/>
+      <mat-error>{{'REGEX.MESSAGE.ERROR.NUMBER'|translate}}</mat-error>
+    </mat-form-field>
+  </app-label-input>
+
+  <app-label-input [isRequired]="false" label="Field02">
+    <mat-form-field appearance="outline">
+      <input matInput formControlName="field02"/>
+    </mat-form-field>
+  </app-label-input>
+</form>
