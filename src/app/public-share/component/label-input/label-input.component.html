@@ -1,9 +1,10 @@
-<div class="component-div" [ngClass]="{'not-form-input': isNotFormInput, 'required': isRequired}">
+<div class="component-div" [ngClass]="{'required': isRequired}">
   <div class="label" [matTooltip]="labelTooltip || label">
     {{ label }}
     <span>*</span>
   </div>
-  <div>
+  <div class="content">
     <ng-content></ng-content>
+    <mat-hint *ngIf="hint !== ''">{{ hint }}</mat-hint>
   </div>
 </div>

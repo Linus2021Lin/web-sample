@@ -1,27 +1,29 @@
 .component-div {
   display: flex;
+  flex-direction: column;
   padding-bottom: 15px;
 
-  > div:first-child {
-    line-height: 32px;
+  .label {
+    display: flex;
     width: 136px;
-    font-size: 13px;
     color: #3c3c3c;
-    text-transform: capitalize;
+    font-family: 'Microsoft JhengHei';
+    line-height: 32px;
+    font-weight: 700;
   }
 
-  > div:last-child {
-    margin-left: 20px;
+  .content {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
+    flex-direction: column;
     width: 280px;
+
+    mat-hint {
+      font-size: 15px;
+    }
   }
 
-  > .label {
-    display: flex;
-  }
-
-  > .label > span {
+  .label > span {
     color: red;
     visibility: hidden;
   }
@@ -29,10 +31,6 @@
 
 .component-div.required > .label > span {
   visibility: visible;
-}
-
-.component-div.not-form-input {
-  padding-bottom: 0px;
 }
 
 .needed .redstar::after {
