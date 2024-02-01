@@ -5,7 +5,6 @@ export interface SimpleOptionObject {
 
 export interface menuItemObject {
   itemName: string;
-  menuLevel: number;// For indent with submenu or not. It should be start with 0.
   routingName?: string;
   iconName?: string;
   iconImagePath?: string;

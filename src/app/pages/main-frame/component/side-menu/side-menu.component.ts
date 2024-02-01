@@ -1,6 +1,5 @@
-import { Component, OnInit, HostBinding } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { animate, state, style, transition, trigger } from '@angular/animations';
 import {
   cloneDeep as _cloneDeep
 } from 'lodash';
@@ -11,29 +10,19 @@ import { ConstantService } from '../../service/constant.service';
 @Component({
   selector: 'app-side-menu',
   templateUrl: './side-menu.component.html',
-  styleUrls: ['./side-menu.component.scss'],
-  animations: [
-    trigger('indicatorRotate', [
-      state('collapsed', style({transform: 'rotate(0deg)'})),
-      state('expanded', style({transform: 'rotate(180deg)'})),
-      transition('expanded <=> collapsed',
-        animate('225ms cubic-bezier(0.4,0.0,0.2,1)')
-      ),
-    ])
-  ]
+  styleUrls: ['./side-menu.component.scss']
 })
 export class SideMenuComponent implements OnInit {
-  @HostBinding('attr.aria-expanded') ariaExpanded;
   menuItems: menuItemObject[] = [];
   isExpanded = false;
   selectedItem;
+  selectedItemIndex = -1;
 
   constructor(
     private constantService: ConstantService,
     private mainFrameOperatorService: MainFrameOperatorService,
     private router: Router
   ) {
-    this.ariaExpanded = this.isExpanded;
     this.menuItems = _cloneDeep(this.constantService.getMenuList());
   }
 
@@ -43,7 +32,6 @@ export class SideMenuComponent implements OnInit {
         const selectedRoute = this.selectedItem.routingName;
 
         this.isExpanded = url.indexOf(`/${selectedRoute}`) === 0;
-        this.ariaExpanded = this.isExpanded;
       }
     });
   }
@@ -52,13 +40,23 @@ export class SideMenuComponent implements OnInit {
     return routingName? this.router.isActive(routingName, true): false;
   }
 
-  onClickMenuItem(menuItem) {
+  onClickMenuItem(menuItem, menuIndex?) {
     this.selectedItem = _cloneDeep(menuItem);
 
-    if (!menuItem.subMenu || !menuItem.subMenu.length) {
+    if (menuItem.subMenu && menuItem.subMenu.length) {
+      // For use case:
+      // Click a sub menu item when web page is another sub menu page.
+      if (menuIndex !== this.selectedItemIndex) {
+        this.isExpanded = true;
+      } else {
+        this.isExpanded = !this.isExpanded;
+      }
+    } else {
       this.router.navigate([menuItem.routingName]);
-    }else if (menuItem.subMenu && menuItem.subMenu.length) {
-      this.isExpanded = !this.isExpanded;
+    }
+
+    if (menuIndex !== undefined) {
+      this.selectedItemIndex = menuIndex;
     }
   }
 }
