@@ -1,12 +1,15 @@
 import { Injectable } from '@angular/core';
 import { of } from 'rxjs';
+import { TimeService } from './time.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MockDataService {
 
-  constructor() { }
+  constructor(
+    private timeService: TimeService
+  ) { }
 
   getMockEvents() {
     const mockData = {
@@ -31,6 +34,25 @@ export class MockDataService {
       ],
       unReadCounter: 2
     };
+
+    return of(mockData);
+  }
+
+  getMockTableData() {
+    const mockData = [];
+
+    for (let i = 1; i < 50; i++) {
+      const loopData =
+        {
+          id: i,
+          name: `Test Record${i}`,
+          ip: `10.5.5.${i}`,
+          status: i%2===0,
+          createTime: this.timeService.getNowTime()
+      }
+
+      mockData.push(loopData);
+    }
 
     return of(mockData);
   }

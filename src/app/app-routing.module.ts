@@ -6,6 +6,7 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { MainFrameComponent } from './pages/main-frame/main-frame.component';
 import { FormDemoComponent } from './pages/form-demo/form-demo.component';
 import { ModalDemoComponent } from './pages/modal-demo/modal-demo.component';
+import { TableDemoComponent } from './pages/table-demo/table-demo.component';
 
 
 const routes: Routes = [
@@ -19,6 +20,7 @@ const routes: Routes = [
       { path: 'dashboard', component: DashboardComponent },
       { path: 'formDemo', component: FormDemoComponent },
       { path: 'modalDemo', component: ModalDemoComponent },
+      { path: 'tableDemo', component: TableDemoComponent },
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' }
     ]
   },

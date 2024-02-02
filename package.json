@@ -27,6 +27,7 @@
     "@ngx-translate/http-loader": "^6.0.0",
     "rxjs": "~6.5.4",
     "d3": "^6.3.0",
+    "dayjs": "^1.11.10",
     "echarts": "^5.0.2",
     "lodash": "^4.17.21",
     "ngx-cookie": "^5.0.0",

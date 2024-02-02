@@ -1,0 +1,148 @@
+<div class="mat-data-table">
+  <!-- Table Header Action Buttons -->
+  <ng-container *ngIf="!isHiddenHeaderActions">
+    <div class="mat-data-table-header">
+      <div class="table-header-actions">
+        <button mat-flat-button
+                [ngClass]="{'hidden': isHiddenRefresh}"
+                (click)="onClickTableRefresh()">
+          <mat-icon>refresh</mat-icon>
+          <span>{{'COMPONENT.DATA_TABLE.ACTION.REFRESH'|translate}}</span>
+        </button>
+        <button mat-flat-button
+                class="danger"
+                [ngClass]="{'hidden': selection.isEmpty() || isHiddenBatchDelete}"
+                (click)="onClickTableBatchDelete()">
+          <mat-icon>delete</mat-icon>
+          <span>{{'COMPONENT.DATA_TABLE.ACTION.DELETE'|translate}}</span>
+        </button>
+        <ng-container *ngTemplateOutlet="headerActionsTemplate"></ng-container>
+      </div>
+    </div>
+  </ng-container>
+  <div class="mat-data-table-body">
+    <table #matTableRef mat-table matSort multiTemplateDataRows
+            [dataSource]="dataSource"
+            (matSortChange)="onChangeDataSort($event)">
+      <!-- Checkbox Feature -->
+      <ng-container matColumnDef="checkBoxColumn" *ngIf="isSupportSelectionRow">
+        <mat-header-cell *matHeaderCellDef>
+          <mat-checkbox (change)="$event ? onChangeTopestCheckbox() : null"
+                        [checked]="selection.hasValue() && isAllSelected()"
+                        [indeterminate]="selection.hasValue() && !isAllSelected()"
+                        [aria-label]="generateCheckboxAriaLabel()">
+          </mat-checkbox>
+        </mat-header-cell>
+        <mat-cell *matCellDef="let row">
+          <mat-checkbox [disabled]="isDisabledCheckbox(row)"
+                        (click)="$event.stopPropagation()"
+                        (change)="$event ? selection.toggle(row) : null"
+                        [checked]="selection.isSelected(row)"
+                        [aria-label]="generateCheckboxAriaLabel(row)">
+          </mat-checkbox>
+        </mat-cell>
+      </ng-container>
+      <!-- Column For-Loop -->
+      <ng-container *ngFor="let column of columns let columnIndex=index"
+                    [matColumnDef]="column.dataKey"
+                    [sticky]="columnIndex === 0 && !isNoneStickyHeaderRow">
+        <mat-header-cell *matHeaderCellDef mat-sort-header
+            [disabled]="column.sortType === 'disabled'"
+            [start]="column.sortType !== 'disabled' && column.sortType"
+            [ngStyle]="column.customizedStyle">
+          {{column.displayName}}
+        </mat-header-cell>
+        <mat-cell *matCellDef="let row" [ngStyle]="column.customizedStyle">
+          <div *ngIf="!column.customizedCellTemplate; else customizedCellTemplateRef">
+            <div matTooltip="{{row[column.dataKey]}}" [matTooltipShowDelay]="500">
+              {{row[column.dataKey]}}
+            </div>
+          </div>
+          <ng-template #customizedCellTemplateRef>
+            <ng-template [ngTemplateOutlet]="column.customizedCellTemplate"
+                        [ngTemplateOutletContext]="{ row: row }"></ng-template>
+          </ng-template>
+        </mat-cell>
+      </ng-container>
+      <!-- Row Actions -->
+      <ng-container matColumnDef="rowActionMenuColumn" *ngIf="!isHiddenRowActions">
+        <mat-header-cell *matHeaderCellDef></mat-header-cell>
+        <mat-cell *matCellDef="let row">
+          <button mat-button [matMenuTriggerFor]="rowActionMenu" (click)="onClickRowActionMenuIcon($event)">
+            <mat-icon>menu</mat-icon>
+          </button>
+          <mat-menu #rowActionMenu="matMenu">
+            <ng-template [ngTemplateOutlet]="rowActionsTemplate"
+                          [ngTemplateOutletContext]="{ row: row }"></ng-template>
+          </mat-menu>
+        </mat-cell>
+      </ng-container>
+      <!-- Expand Row -->
+      <ng-container matColumnDef="expandIconColumn" *ngIf="isSupportExpandRow">
+        <mat-header-cell *matHeaderCellDef></mat-header-cell>
+        <mat-cell *matCellDef="let row">
+          <mat-icon [@expendSwitch]="row === expandedRow ? 'expanded': 'collapsed'">
+            expand_more
+          </mat-icon>
+        </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="expandedDetail" *ngIf="isSupportExpandRow">
+        <mat-cell *matCellDef="let row" [attr.colspan]="displayedColumns.length">
+          <div class="expand-detail-div" [@detailContent]="row === expandedRow ? 'expanded': 'collapsed'">
+            <ng-container [ngTemplateOutlet]="expandRowTemplate"
+                          [ngTemplateOutletContext]="{ row: row }"></ng-container>
+          </div>
+        </mat-cell>
+      </ng-container>
+      <!-- No Data -->
+      <ng-container matColumnDef="noData">
+        <mat-footer-cell *matFooterCellDef [attr.colspan]="displayedColumns.length">
+          <div class="message" [ngClass]="{'show-message': dataSource.data.length === 0}">
+            {{'COMPONENT.DATA_TABLE.MESSAGE.NO_DATA'|translate}}
+          </div>
+        </mat-footer-cell>
+      </ng-container>
+      <mat-footer-row *matFooterRowDef="['noData']" class="noData-footer-row"
+                        [ngClass]="{'show-record': !isLoading && dataSource.data.length === 0}"></mat-footer-row>
+      <!-- Loading Spinner -->
+      <ng-container matColumnDef="loading">
+        <mat-footer-cell *matFooterCellDef [attr.colspan]="displayedColumns.length">
+          <mat-spinner [diameter]="32"></mat-spinner>
+        </mat-footer-cell>
+      </ng-container>
+      <mat-footer-row *matFooterRowDef="['loading']" class="loading-footer-row"
+                        [ngClass]="{'show-loading': isLoading}"></mat-footer-row>
+      <!-- Row Setting -->
+      <mat-header-row *matHeaderRowDef="displayedColumns; sticky: !isNoneStickyHeaderRow;"></mat-header-row>
+      <mat-row *matRowDef="let row; let index = dataIndex; columns: displayedColumns;"
+                class="element-row"
+                [ngClass]="{
+                            'hiden-row': isLoading,
+                            'even-row': index % 2 == 0,
+                            'expand-row-cursor': isSupportExpandRow
+                          }"
+                [class.expanded-row]="row === expandedRow"
+                (click)="onClickTableRow(row)"
+                (mouseover)="onMouseOverTableRow($event, row)"
+                (mouseleave)="onMouseLeaveTableRow(row)">
+      </mat-row>
+      <!--The expand row template need to be under normal row setting-->
+      <ng-container *ngIf="isSupportExpandRow">
+        <mat-row *matRowDef="let row; columns: ['expandedDetail']" class="detail-row"></mat-row>
+      </ng-container>
+    </table>
+    <div class="footer-div">
+      <mat-paginator [ngClass]="{hidePaginator: isHiddenPaginator}"
+                      [length]="dataSource.data.length"
+                      [pageSize]="10"
+                      [pageSizeOptions]="[10, 20, 50]"
+                      (page)="onChangePage($event)"
+                      showFirstLastButtons>
+      </mat-paginator>
+      <div *ngIf="isSupportFooterExportActions" class="export-actions">
+        <span>{{'COMPONENT.DATA_TABLE.ACTION.EXPORT'|translate}}</span>
+        <ng-container *ngTemplateOutlet="footerExportActionsTemplate"></ng-container>
+      </div>
+    </div>
+  </div>
+</div>
