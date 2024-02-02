@@ -1,0 +1,141 @@
+<div class="sample-page-component">
+  <div class="main-header tab-page-header">
+    <div class="header-title">
+      {{'PAGE.MAIN_FRAME.MENU.TABLE_DEMO'|translate}}
+    </div>
+    <div class="header-action">
+    </div>
+  </div>
+  <div class="main-content">
+    <mat-tab-group #tabGroup disableRipple="true" animationDuration="0ms">
+      <mat-tab label="{{'COMMON.TEXT.DESCRIPTION'|translate}}">
+        <ng-template matTabContent>
+          <p>
+            Use angular material Table to build the data-table.<br/>
+            In addition to original material table method,<br/>
+            It also be integrated lots other feature.<br/>
+          </p>
+          <div class="feature-description">
+            <div class="feature-div">
+              You can decide to enable these feature or not:
+              <ul>
+                <li>Header Action Buttons</li>
+                <li>Refresh Button</li>
+                <li>Batch Delete Button</li>
+                <li>Row Selection Column</li>
+                <li>Row Action Column</li>
+                <li>Expand Row</li>
+                <li>Mouse Hover/Leave Events on Table Row</li>
+                <li>Paginator</li>
+                <li>Export Action</li>
+              </ul>
+            </div>
+            <div class="feature-div">
+              You can input template for these feature:
+              <ul>
+                <li>Header Actions</li>
+                <li>Row Actions</li>
+                <li>Expand Row</li>
+                <li>Export Actions</li>
+              </ul>
+            </div>
+            <div class="feature-div">
+              Other customize feature:
+              <ul>
+                <li>
+                  Input a check function<br/>To enable/disable row selection by row data
+                </li>
+                <li>Customize column template</li>
+                <li>Customize column CSS</li>
+              </ul>
+            </div>
+            <div class="feature-div">
+              Table can emit these events:
+              <ul>
+                <li>Refresh</li>
+                <li>Batch Delete</li>
+                <li>Mouse Hover on Row</li>
+                <li>Mouse Leave on Row</li>
+                <li>Change Column Sort</li>
+                <li>Change Paginator</li>
+              </ul>
+            </div>
+          </div>
+          <br/>More detail please access the official web page.<br/>
+          <a href="https://material.angular.tw/components/table/overview" target="_blank">
+            Access Angular Material Table Doc.
+          </a>
+          <br/><br/>Or reference sample site source code.
+        </ng-template>
+      </mat-tab>
+      <mat-tab label="DEMO">
+        <ng-template matTabContent>
+          <app-data-table [featureFlags]="tableFlags"
+                          [dataSource]="tableData"
+                          [columns]="tableModel"
+                          [isLoading]="loading$"
+                          [headerActionsTemplate]="tableHeaderActions"
+                          [isCheckboxDisabled]="isRowDisabledSelect"
+                          [rowActionsTemplate]="rowActions"
+                          [expandRowTemplate]="expandRow"
+                          [footerExportActionsTemplate]="exportActions"
+                          (batchDeleteEmmiter)="batchDelete($event)"
+                          (refreshEmmiter)="refreshTableData()"
+                          (hoverRowEmmiter)="hoverRow($event)"
+                          (leaveRowEmmiter)="leaveRow($event)"
+                          (changeSortEmmiter)="changeSort($event)"
+                          (changePaginatorEmmiter)="changePaginator($event)">
+          </app-data-table>
+        </ng-template>
+      </mat-tab>
+    </mat-tab-group>
+  </div>
+</div>
+
+<ng-template #booleanColumn let-row="row">
+  <div>
+    <mat-icon *ngIf="row['status']===false">cancel</mat-icon>
+    <mat-icon *ngIf="row['status']===true">check_circle</mat-icon>
+  </div>
+</ng-template>
+
+<ng-template #tableHeaderActions>
+  <button mat-stroked-button
+          class="inline">
+    <span>Header Action01</span>
+  </button>
+  <button mat-stroked-button
+          class="inline">
+    <span>Header Action02</span>
+  </button>
+</ng-template>
+
+<ng-template #rowActions let-row="row">
+  <div class="sample-content-table-row-actions">
+    <button mat-stroked-button
+            class="inline"
+            (click)="updateTableRecord(row)">
+      <span>Update</span>
+    </button>
+    <button mat-stroked-button
+            class="inline danger"
+            (click)="deleteTableRecord(row)">
+      <span>Delete</span>
+    </button>
+  </div>
+</ng-template>
+
+<ng-template #expandRow let-row="row">
+  <div>
+    Show expand row data here<br/>
+    The source row data of expand:<br/>
+    {{ stringifyRowData(row) }}
+  </div>
+</ng-template>
+
+<ng-template #exportActions>
+  <button mat-stroked-button (click)="exportCsvFile()">
+    <mat-icon>insert_drive_file</mat-icon>
+    CSV
+  </button>
+</ng-template>

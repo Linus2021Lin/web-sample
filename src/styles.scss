@@ -80,3 +80,9 @@ input:-webkit-autofill:active {
     padding-bottom: 0;
   }
 }
+
+// Table row action list
+.sample-content-table-row-actions {
+  display:flex;
+  flex-direction: column;
+}

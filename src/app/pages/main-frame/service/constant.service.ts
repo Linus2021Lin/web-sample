@@ -32,6 +32,12 @@ export class ConstantService {
         isShow: true
       },
       {
+        itemName: this.translateService.instant('PAGE.MAIN_FRAME.MENU.TABLE_DEMO'),
+        iconImagePath: '../../../assets/icons/menu_list_icons/functions.svg',
+        routingName: 'tableDemo',
+        isShow: true
+      },
+      {
         itemName: 'Sub Menu Demo',
         iconImagePath: '../../../assets/icons/menu_list_icons/functions.svg',
         isShow: true,
