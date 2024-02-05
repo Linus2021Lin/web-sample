@@ -38,18 +38,18 @@ export class ConstantService {
         isShow: true
       },
       {
-        itemName: 'Sub Menu Demo',
+        itemName: this.translateService.instant('PAGE.MAIN_FRAME.MENU.LAYOUT_DEMO'),
         iconImagePath: '../../../assets/icons/menu_list_icons/functions.svg',
         isShow: true,
         subMenu: [
           {
-            itemName: 'Sub 01',
-            routingName: 'sub_1',
+            itemName: this.translateService.instant('PAGE.MAIN_FRAME.MENU.SPA_LAYOUT_DEMO'),
+            routingName: 'spaLayoutDemo',
             isShow: true
           },
           {
-            itemName: 'Sub 02',
-            routingName: 'sub_2',
+            itemName: this.translateService.instant('PAGE.MAIN_FRAME.MENU.TAB_LAYOUT_DEMO'),
+            routingName: 'tabLayoutDemo',
             isShow: true
           }
         ]

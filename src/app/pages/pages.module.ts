@@ -7,6 +7,8 @@ import { DashboardModule } from './dashboard/dashboard.module';
 import { FormDemoModule } from './form-demo/form-demo.module';
 import { ModalDemoModule } from './modal-demo/modal-demo.module';
 import { TableDemoModule } from './table-demo/table-demo.module';
+import { TabLayoutDemoModule } from './tab-layout-demo/tab-layout-demo.module';
+import { SpaLayoutDemoModule } from './spa-layout-demo/spa-layout-demo.module';
 
 @NgModule({
   declarations: [],
@@ -19,7 +21,9 @@ import { TableDemoModule } from './table-demo/table-demo.module';
     DashboardModule,
     FormDemoModule,
     ModalDemoModule,
-    TableDemoModule
+    TableDemoModule,
+    TabLayoutDemoModule,
+    SpaLayoutDemoModule
   ]
 })
 export class PagesModule { }
