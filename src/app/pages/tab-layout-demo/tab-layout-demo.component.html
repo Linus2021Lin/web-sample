@@ -1,0 +1,54 @@
+<div class="sample-page-component">
+  <div class="main-header tab-page-header">
+    <div class="header-title">
+      {{'PAGE.MAIN_FRAME.MENU.TAB_LAYOUT_DEMO'|translate}}
+    </div>
+    <div class="header-action">
+      <ng-container *ngIf="tabIndex === 0">
+        <button class="sample-action-button" mat-stroked-button>
+          Page Action01
+        </button>
+        <button class="sample-action-button" mat-stroked-button>
+          Page Action01
+        </button>
+      </ng-container>
+      <ng-container *ngIf="tabIndex === 1">
+        <button class="sample-action-button" mat-stroked-button>
+          Page Action03
+        </button>
+        <button class="sample-action-button" mat-stroked-button>
+          Page Action04
+        </button>
+      </ng-container>
+    </div>
+  </div>
+  <div class="main-content">
+    <mat-tab-group #tabGroup disableRipple="true" animationDuration="0ms"
+      (selectedTabChange)="onChangeTab($event)">
+      <mat-tab label="Tab01">
+        <ng-template matTabContent>
+          <p>
+            Use angular material Tab & CSS to build this layout.<br/>
+            It's a basic Tab layout.<br/>
+            You can put any HTML/Template/Component on any tab content area.<br/>
+          </p>
+          <br/>More detail please access the official web page.<br/>
+          <a href="https://material.angular.tw/components/tabs/overview" target="_blank">
+            Access Angular Material Tab Doc.
+          </a>
+          <br/><br/>Or reference sample site source code.
+        </ng-template>
+      </mat-tab>
+      <mat-tab label="Tab02">
+        <ng-template matTabContent>
+          <p>You can put any HTML/Template/Component here.</p>
+          <br/>More detail please access the official web page.<br/>
+          <a href="https://material.angular.tw/components/tabs/overview" target="_blank">
+            Access Angular Material Tab Doc.
+          </a>
+          <br/><br/>Or reference sample site source code.
+        </ng-template>
+      </mat-tab>
+    </mat-tab-group>
+  </div>
+</div>
