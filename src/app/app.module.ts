@@ -8,6 +8,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { CookieModule } from 'ngx-cookie';
 
 import { AppRoutingModule } from './app-routing.module';
+import { httpInterceptorProviders } from './public-share/service/http-interceptor.service';
 import { PagesModule } from './pages/pages.module';
 import { AppComponent } from './app.component';
 
@@ -65,7 +66,8 @@ export function translateInitializerFactory(translate: TranslateService) {
       deps: [TranslateService],
       // let it can set multi-setting before app init
       multi: true
-    }
+    },
+    ...httpInterceptorProviders
   ],
   bootstrap: [AppComponent]
 })
