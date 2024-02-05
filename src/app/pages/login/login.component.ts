@@ -35,7 +35,7 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    const languageCode = this.i18nService.getLanguage();
+    const languageCode = this.i18nService.getI18nLanguage();
 
     this.returnUrl = this.activatedRoute.snapshot.queryParams['returnUrl'] || '/';
     this.siteLanguage = this.languageOptions.find(option => option.value === languageCode).label;
@@ -78,7 +78,7 @@ export class LoginComponent implements OnInit {
 
     this.siteLanguage = option.label;
     this.translateService.use(option.value);
-    this.i18nService.setLanguage(option.value);
+    this.i18nService.setI18nLanguage(option.value);
   }
 
   onSubmit() {

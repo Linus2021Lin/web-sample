@@ -17,7 +17,8 @@ export class ConstantService {
 
   getLanguageOptions():SimpleOptionObject[] {
     return [
-      { label: '中文', value: 'cn'},
+      { label: '简中', value: 'cn'},
+      { label: '繁中', value: 'tc'},
       { label: 'English', value: 'en'}
     ];
   }

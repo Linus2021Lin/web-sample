@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { I18N_SEESION_NAME, DEFAULT_I18N_LANGUAGE } from './global-constant.service';
 
 @Injectable({
   providedIn: 'root'
@@ -7,18 +8,18 @@ export class I18nService {
 
   constructor() { }
 
-	getLanguage(): string{
+	getI18nLanguage(): string{
 		if (localStorage){
-			return localStorage['language'] || 'cn';
+			return localStorage[I18N_SEESION_NAME] || DEFAULT_I18N_LANGUAGE;
 		}
 		else{
-			return 'cn';
+			return DEFAULT_I18N_LANGUAGE;
 		}
 	}
 
-	setLanguage(language: string){
+	setI18nLanguage(language: string){
 		if (localStorage){
-			localStorage['language'] = language;
+			localStorage[I18N_SEESION_NAME] = language;
 		}
 	}
 }
