@@ -9,6 +9,7 @@ import { CookieModule } from 'ngx-cookie';
 
 import { AppRoutingModule } from './app-routing.module';
 import { httpInterceptorProviders } from './public-share/service/http-interceptor.service';
+import { I18N_SEESION_NAME, DEFAULT_I18N_LANGUAGE } from './public-share/service/global-constant.service';
 import { PagesModule } from './pages/pages.module';
 import { AppComponent } from './app.component';
 
@@ -19,16 +20,11 @@ export function i18nJsonLoaderFactory(http: HttpClient) {
 
 export function translateInitializerFactory(translate: TranslateService) {
   return () => {
-    let language = window.localStorage['language'];
+    const i18nLanguage = window.localStorage[I18N_SEESION_NAME] || DEFAULT_I18N_LANGUAGE;
 
-    // Default language: chinese
-    if (!language) {
-      language = 'cn';
-    }
+    translate.setDefaultLang(i18nLanguage);
 
-    translate.setDefaultLang(language);
-
-    return translate.use(language).toPromise();
+    return translate.use(i18nLanguage).toPromise();
   };
 }
 

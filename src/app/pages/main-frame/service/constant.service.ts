@@ -14,7 +14,7 @@ export class ConstantService {
   getMenuList():menuItemObject[] {
     return [
       {
-        itemName: this.translateService.instant('PAGE.MAIN_FRAME.MENU.HOME'),
+        itemName: this.translateService.instant('PAGE.MAIN_FRAME.MENU.DASHBOARD'),
         iconName: 'auto_awesome_mosaic',
         routingName: 'dashboard',
         isShow: true
