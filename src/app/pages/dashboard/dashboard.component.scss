@@ -1,0 +1,21 @@
+.chart-wrapper {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+
+  .chart-div {
+    height: 400px;
+  }
+
+  .large-chart {
+    width: 80%;
+  }
+
+  .middle-chart {
+    width: 600px;
+  }
+
+  .small-chart {
+    width: 300px;
+  }
+}
