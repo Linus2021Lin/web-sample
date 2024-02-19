@@ -9,6 +9,7 @@ import { ModalDemoComponent } from './pages/modal-demo/modal-demo.component';
 import { TableDemoComponent } from './pages/table-demo/table-demo.component';
 import { SpaLayoutDemoComponent } from './pages/spa-layout-demo/spa-layout-demo.component';
 import { TabLayoutDemoComponent } from './pages/tab-layout-demo/tab-layout-demo.component';
+import { ChartDemoComponent } from './pages/chart-demo/chart-demo.component';
 
 
 const routes: Routes = [
@@ -25,6 +26,7 @@ const routes: Routes = [
       { path: 'tableDemo', component: TableDemoComponent },
       { path: 'spaLayoutDemo', component: SpaLayoutDemoComponent },
       { path: 'tabLayoutDemo', component: TabLayoutDemoComponent },
+      { path: 'chartDemo', component: ChartDemoComponent },
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' }
     ]
   },
