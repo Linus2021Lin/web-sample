@@ -53,6 +53,12 @@ export class ConstantService {
             isShow: true
           }
         ]
+      },
+      {
+        itemName: this.translateService.instant('PAGE.MAIN_FRAME.MENU.CHART_DEMO'),
+        iconImagePath: '../../../assets/icons/menu_list_icons/functions.svg',
+        routingName: 'chartDemo',
+        isShow: true
       }
     ];
   }

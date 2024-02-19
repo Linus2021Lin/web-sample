@@ -1,0 +1,69 @@
+<div class="sample-page-component">
+  <div class="main-header tab-page-header">
+    <div class="header-title">
+      {{'PAGE.MAIN_FRAME.MENU.CHART_DEMO'|translate}}
+    </div>
+    <div class="header-action">
+    </div>
+  </div>
+  <div class="main-content">
+    <mat-tab-group #tabGroup disableRipple="true" animationDuration="0ms"
+    (selectedTabChange)="onChangeTab($event)">
+      <mat-tab label="{{'COMMON.TEXT.DESCRIPTION'|translate}}">
+        <ng-template matTabContent>
+          <p>
+            Use ECharts to build these charts.<br/>
+            Have build a public service: charts-tools<br/>
+            <br/>
+            More detail please access the official web page.
+          </p>
+          <a href="https://echarts.apache.org/en/option.html#title" target="_blank">
+            Access ECharts Option Doc.
+          </a><br/>
+          <a href="https://echarts.apache.org/en/api.html#echarts" target="_blank">
+            Access ECharts API Doc.
+          </a>
+          <br/><br/>Or reference sample site source code.
+        </ng-template>
+      </mat-tab>
+
+      <mat-tab label="Time Chart">
+        <ng-template matTabContent>
+          <div class="chart-wrapper">
+            <div id="timeChart" class="chart-div large-chart"></div>
+          </div>
+        </ng-template>
+      </mat-tab>
+
+      <mat-tab label="Line Chart">
+        <ng-template matTabContent>
+          <div class="chart-wrapper">
+            <div id="singleLineChart" class="chart-div large-chart"></div>
+            <div id="multiLineChart" class="chart-div large-chart"></div>
+          </div>
+        </ng-template>
+      </mat-tab>
+
+      <mat-tab label="Bar Chart">
+        <ng-template matTabContent>
+          <div class="chart-wrapper">
+            <div id="singleBarChart" class="chart-div middle-chart"></div>
+            <div id="horizontalBarChart" class="chart-div middle-chart"></div>
+            <div id="verticalBarChart" class="chart-div middle-chart"></div>
+          </div>
+        </ng-template>
+      </mat-tab>
+
+      <mat-tab label="Pie Chart">
+        <ng-template matTabContent>
+          <div class="chart-wrapper">
+            <div id="pieChart" class="chart-div middle-chart"></div>
+            <div id="doughnutChart" class="chart-div middle-chart"></div>
+            <div id="halfDoughnutChart" class="chart-div middle-chart"></div>
+            <div id="nightingaleChart" class="chart-div middle-chart"></div>
+          </div>
+        </ng-template>
+      </mat-tab>
+    </mat-tab-group>
+  </div>
+</div>

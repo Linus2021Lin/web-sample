@@ -9,6 +9,7 @@ import { ModalDemoModule } from './modal-demo/modal-demo.module';
 import { TableDemoModule } from './table-demo/table-demo.module';
 import { TabLayoutDemoModule } from './tab-layout-demo/tab-layout-demo.module';
 import { SpaLayoutDemoModule } from './spa-layout-demo/spa-layout-demo.module';
+import { ChartDemoModule } from './chart-demo/chart-demo.module';
 
 @NgModule({
   declarations: [],
@@ -23,7 +24,8 @@ import { SpaLayoutDemoModule } from './spa-layout-demo/spa-layout-demo.module';
     ModalDemoModule,
     TableDemoModule,
     TabLayoutDemoModule,
-    SpaLayoutDemoModule
+    SpaLayoutDemoModule,
+    ChartDemoModule
   ]
 })
 export class PagesModule { }
